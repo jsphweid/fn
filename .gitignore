@@ -386,3 +386,4 @@ package-lock.json
 cdk.out
 outputs/
 deploy.sh
+*.js
