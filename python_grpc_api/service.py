@@ -2,15 +2,15 @@ from concurrent import futures
 import grpc
 
 from audio import Audio
-from infer.hello_world.adder import adder
-from infer.hello_world.half_plus_two import half_plus_two
-from infer.librosa_fns import librosa_transpose
-from infer.onsets_and_frames.drums import transcribe_drums
-from infer.onsets_and_frames.piano import transcribe_piano
-from infer.pann.resnet38 import get_audio_tags
-from infer.wav_u_net.m4 import m4
-from infer.wav_u_net.m5_highsr import m5_highsr
-from infer.wav_u_net.m6 import m6
+from fn.hello_world.adder import adder
+from fn.hello_world.half_plus_two import half_plus_two
+from fn.librosa_fns import librosa_transpose
+from fn.onsets_and_frames.drums import transcribe_drums
+from fn.onsets_and_frames.piano import transcribe_piano
+from fn.pann.resnet38 import get_audio_tags
+from fn.wav_u_net.m4 import m4
+from fn.wav_u_net.m5_highsr import m5_highsr
+from fn.wav_u_net.m6 import m6
 from python_grpc_api import service_pb2, service_pb2_grpc, MAX_BYTES
 
 

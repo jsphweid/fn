@@ -5,8 +5,8 @@ from pydantic import BaseModel
 
 from audio import Audio
 from graph_predict import GraphPredictionRequest, graph_predict
-from infer.helpers import log_timer
-from infer.pann.sorted_labels import pann_sorted_labels
+from fn.helpers import log_timer
+from fn.pann.sorted_labels import pann_sorted_labels
 
 
 class PannAudioLabelPrediction(BaseModel):

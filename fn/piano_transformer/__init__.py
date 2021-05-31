@@ -1,7 +1,7 @@
 import numpy as np
 
 from graph_predict import GraphPredictionRequest, graph_predict
-from infer.helpers import log_timer
+from fn.helpers import log_timer
 from midi import Midi
 
 

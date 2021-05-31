@@ -6,7 +6,7 @@ from typing import List
 import numpy as np
 
 from graph_predict import GraphPredictionRequest, ModelResult, graph_predict
-from infer.helpers import log_timer
+from fn.helpers import log_timer
 
 
 @log_timer

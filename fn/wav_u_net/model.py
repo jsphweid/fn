@@ -3,7 +3,7 @@
 import tensorflow.compat.v1 as tf
 import numpy as np
 
-from infer.wav_u_net import helpers
+from fn.wav_u_net import helpers
 
 
 def independent_outputs(featuremap, source_names, num_channels, filter_width, padding, activation):

@@ -5,8 +5,8 @@ from magenta.models.onsets_frames_transcription import infer_util, constants
 
 from audio import Audio
 from graph_predict import graph_predict, GraphPredictionRequest
-from infer.helpers import log_timer
-from infer.onsets_and_frames.helpers import preprocess_audio_for_transcription
+from fn.helpers import log_timer
+from fn.onsets_and_frames.helpers import preprocess_audio_for_transcription
 from midi import Midi
 
 _hparams = CONFIG_MAP["onsets_frames"].hparams
