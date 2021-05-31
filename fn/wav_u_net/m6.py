@@ -1,6 +1,6 @@
 from audio import Audio
-from infer.wav_u_net.configs import full_band_separation_model_config
-from infer.wav_u_net.process import process
+from fn.wav_u_net.configs import full_band_separation_model_config
+from fn.wav_u_net.process import process
 from type_model import BasicBandSourceSeparationResult
 
 

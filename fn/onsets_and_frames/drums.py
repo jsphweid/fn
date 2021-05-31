@@ -6,8 +6,8 @@ from note_seq.protobuf import music_pb2
 
 from audio import Audio
 from graph_predict import GraphPredictionRequest, graph_predict, ModelResult
-from infer.helpers import log_timer
-from infer.onsets_and_frames.helpers import preprocess_audio_for_transcription
+from fn.helpers import log_timer
+from fn.onsets_and_frames.helpers import preprocess_audio_for_transcription
 from midi import Midi
 
 _hparams = CONFIG_MAP["drums"].hparams

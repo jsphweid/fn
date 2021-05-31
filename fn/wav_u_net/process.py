@@ -1,11 +1,11 @@
 from typing import Dict
 import numpy as np
 
-from infer.helpers import log_timer
-from infer.wav_u_net import helpers
+from fn.helpers import log_timer
+from fn.wav_u_net import helpers
 from audio import Audio
 from graph_predict import graph_predict, GraphPredictionRequest
-from infer.wav_u_net.model import UnetAudioSeparator
+from fn.wav_u_net.model import UnetAudioSeparator
 
 
 class _TrackLike(object):
