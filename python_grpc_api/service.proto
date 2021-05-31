@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+service Fn {
+    // audio
+    rpc LibrosaTranspose (StandardTransposeRequest) returns (AudioResponse) {}
+    rpc OnsetsAndFramesPianoTranscribe (AudioRequest) returns (MidiResponse) {}
+    rpc OnsetsAndFramesDrumTranscribe (AudioRequest) returns (MidiResponse) {}
+    rpc PannAudioTaggingResnet38 (AudioRequest) returns (StandardAudioTaggingResponse) {}
+    rpc WavUNetM4SourceSeparation (AudioRequest) returns (StandardVocalSeparationResponse) {}
+    rpc WavUNetM5HighSrSourceSeparation (AudioRequest) returns (StandardVocalSeparationResponse) {}
+    rpc WavUNetM6SourceSeparation (AudioRequest) returns (StandardBandSeparationResponse) {}
+
+    // helloworld
+    rpc HalfPlusTwo (HalfPlusTwoRequest) returns (HalfPlusTwoResponse) {}
+    rpc Adder (AdderRequest) returns (AdderResponse) {}
+}
+
+
+message StandardVocalSeparationResponse {
+    bytes vocals = 1;
+    bytes accompaniment = 2;
+}
+
+message StandardBandSeparationResponse {
+    bytes bass = 1;
+    bytes drums = 2;
+    bytes other = 3;
+    bytes vocals = 4;
+}
+
+message StandardTransposeRequest {
+    bytes audio = 1;
+    float semitones = 2;
+}
+
+message AudioRequest {
+    bytes audio = 1;
+}
+
+message AudioResponse {
+    bytes audio = 1;
+}
+
+message MidiResponse {
+    bytes midi = 1;
+}
+
+message HalfPlusTwoRequest {
+    repeated float inputs = 1;
+}
+
+message HalfPlusTwoResponse {
+    repeated float outputs = 1;
+}
+
+message AdderRequest {
+    repeated float inputs = 1;
+}
+
+message AdderResponse {
+    float output = 1;
+}
+
+message StandardAudioTag {
+    string label = 1;
+    float score = 2;
+}
+
+message StandardAudioTaggingResponse {
+    repeated StandardAudioTag tags = 1;
+}
