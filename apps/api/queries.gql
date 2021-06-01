@@ -1,0 +1,41 @@
+mutation {
+  halfPlusTwo(nums: [1.1, 1.1, 1.1])
+}
+
+mutation {
+  adder(nums: [1.1, 1.1, 1.1])
+}
+
+mutation ($file: Upload!) {
+  pannAudioTaggingResnet38(file: $file) {
+    label
+    score
+  }
+}
+
+mutation ($file: Upload!) {
+  transcribePianoUsingOnsetsAndFrames(file: $file)
+}
+
+mutation ($file: Upload!) {
+  sourceSeparateUsingWavUNetM4(file: $file) {
+    vocals
+    accompaniment
+  }
+}
+
+mutation ($file: Upload!) {
+  sourceSeparateUsingWavUNetM5HighSr(file: $file) {
+    vocals
+    accompaniment
+  }
+}
+
+mutation ($file: Upload!) {
+  sourceSeparateUsingWavUNetM6(file: $file) {
+    vocals
+    bass
+    other
+    drums
+  }
+}
