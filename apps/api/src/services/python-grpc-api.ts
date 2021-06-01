@@ -1,35 +1,22 @@
-import grpc from "grpc";
 import { promisify } from "util";
 
-import services from "../generated/grpc-other/service_grpc_pb";
 import {
   HalfPlusTwoRequest,
   HalfPlusTwoResponse,
-} from "../generated/grpc-other/service_pb";
+} from "../generated/grpc/service_pb";
 import {
   AdderRequest,
   AdderResponse,
   StandardAudioTag,
   StandardAudioTaggingResponse,
   StandardBandSeparationResponse,
-} from "../generated/grpc-other/service_pb";
+} from "../generated/grpc/service_pb";
 import {
   AudioRequest,
   MidiResponse,
   StandardVocalSeparationResponse,
-} from "../generated/grpc-other/service_pb";
-
-const PYTHON_GRPC_SERVICE_ADDRESS =
-  process.env.PYTHON_GRPC_SERVICE_ADDRESS || "localhost:50051";
-
-const grpcClient = new services.FnClient(
-  PYTHON_GRPC_SERVICE_ADDRESS,
-  grpc.credentials.createInsecure(),
-  {
-    "grpc.max_send_message_length": 10000000,
-    "grpc.max_receive_message_length": 10000000,
-  }
-);
+} from "../generated/grpc/service_pb";
+import grpcClient from "../grpc-client";
 
 const bufferToAudioRequest = (audio: Buffer): AudioRequest => {
   const req = new AudioRequest();
