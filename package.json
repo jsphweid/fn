@@ -21,5 +21,8 @@
   },
   "engines": {
     "npm": ">=7"
+  },
+  "dependencies": {
+    "graphql-codegen": "^0.4.0"
   }
 }
