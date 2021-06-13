@@ -13,13 +13,13 @@ from audio import Audio
 from midi import Midi
 from python_grpc_api import service_pb2_grpc, MAX_BYTES, service_pb2
 from python_grpc_api.service import Fn
-from graph_predict.grpc_service import TENSORFLOW_SERVING_IP
+from graph_predict.grpc_service import TF_SERVING_HOST
 
 
 @pytest.fixture(scope='session', autouse=True)
 def tensorflow_serving():
     # for now, if tensorflow serving's REST API is running, assume gRPC is open on 8500 port as well...
-    url = f"http://{TENSORFLOW_SERVING_IP}:8501/v1/models/half-plus-two-cpu:predict"
+    url = f"http://{TF_SERVING_HOST}:8501/v1/models/half-plus-two-cpu:predict"
     post_data = {"instances": [1.0]}
     try:
         res = requests.post(url, json.dumps(post_data))

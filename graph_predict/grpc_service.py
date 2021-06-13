@@ -5,10 +5,10 @@ from tensorflow_serving.apis import prediction_service_pb2_grpc, predict_pb2
 
 from graph_predict.models import GraphPredictionRequest, DEFAULT_SIGNATURE_NAME, ModelResult
 
-TENSORFLOW_SERVING_IP = os.getenv("TENSORFLOW_SERVING_IP", "127.0.0.1")
-TENSORFLOW_SERVING_PORT = os.getenv("TENSORFLOW_SERVING_PORT", 8500)
+TF_SERVING_HOST = os.getenv("TF_SERVING_HOST", "127.0.0.1")
+TF_SERVING_PORT = os.getenv("TF_SERVING_PORT", 8500)
 
-channel = grpc.insecure_channel(f"{TENSORFLOW_SERVING_IP}:{TENSORFLOW_SERVING_PORT}")
+channel = grpc.insecure_channel(f"{TF_SERVING_HOST}:{TF_SERVING_PORT}")
 stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
 
 

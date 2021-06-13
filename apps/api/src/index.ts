@@ -1,5 +1,7 @@
-import { ApolloServer, gql, makeExecutableSchema } from "apollo-server";
 import { ReadStream } from "fs-capacitor";
+import express, { json } from "express";
+import { ApolloServer, gql } from "apollo-server-express";
+import { graphqlUploadExpress } from "graphql-upload";
 
 import { PythonGrpcApi } from "./services/python-grpc-api";
 import { FnObjectStore } from "./services/fn-object-store";
@@ -14,11 +16,17 @@ const readStreamIntoBuffer = async (stream: ReadStream): Promise<Buffer> => {
   return Buffer.concat(chunks);
 };
 
+const uploadToReadStream = (file: any): ReadStream =>
+  file.file.createReadStream();
+
 const resolvers: Resolvers = {
+  Query: {
+    helloworld: () => "Hello, World!",
+  },
   Mutation: {
     pannAudioTaggingResnet38: async (_, { file }) => {
-      const { createReadStream } = await file;
-      const buffer = await readStreamIntoBuffer(createReadStream());
+      const stream = uploadToReadStream(file);
+      const buffer = await readStreamIntoBuffer(stream);
       return PythonGrpcApi.pannAudioTaggingResnet38(buffer).then((result) =>
         result.map((item) => ({
           score: item.getScore(),
@@ -30,8 +38,8 @@ const resolvers: Resolvers = {
     halfPlusTwo: async (_, { nums }) => PythonGrpcApi.halfPlusTwo(nums),
     transcribePianoUsingOnsetsAndFrames: async (_, { file }) => {
       // TODO: do a quick check to make sure incoming file is audio...?
-      const { createReadStream, filename, mimetype, encoding } = await file;
-      const buffer = await readStreamIntoBuffer(createReadStream());
+      const stream = uploadToReadStream(file);
+      const buffer = await readStreamIntoBuffer(stream);
       const midiFile = await PythonGrpcApi.onsetsAndFramesPianoTranscribe(
         buffer
       );
@@ -40,8 +48,8 @@ const resolvers: Resolvers = {
       return FnObjectStore.getSignedUrl(objectKey);
     },
     sourceSeparateUsingWavUNetM4: async (_, { file }) => {
-      const { createReadStream } = await file;
-      const buffer = await readStreamIntoBuffer(createReadStream());
+      const stream = uploadToReadStream(file);
+      const buffer = await readStreamIntoBuffer(stream);
       const result = await PythonGrpcApi.wavUNetM4SourceSeparation(buffer);
       const accompanimentObjectKey = `${Utils.getUniqueId()}.wav`;
       const vocalObjectKey = `${Utils.getUniqueId()}.wav`;
@@ -55,8 +63,8 @@ const resolvers: Resolvers = {
       ]).then(([accompaniment, vocals]) => ({ accompaniment, vocals }));
     },
     sourceSeparateUsingWavUNetM5HighSr: async (_, { file }) => {
-      const { createReadStream } = await file;
-      const buffer = await readStreamIntoBuffer(createReadStream());
+      const stream = uploadToReadStream(file);
+      const buffer = await readStreamIntoBuffer(stream);
       const result = await PythonGrpcApi.wavUNetM5SourceSeparationHighSr(
         buffer
       );
@@ -72,8 +80,8 @@ const resolvers: Resolvers = {
       ]).then(([accompaniment, vocals]) => ({ accompaniment, vocals }));
     },
     sourceSeparateUsingWavUNetM6: async (_, { file }) => {
-      const { createReadStream } = await file;
-      const buffer = await readStreamIntoBuffer(createReadStream());
+      const stream = uploadToReadStream(file);
+      const buffer = await readStreamIntoBuffer(stream);
       const result = await PythonGrpcApi.wavUNetM6SourceSeparation(buffer);
       const otherObjectKey = `${Utils.getUniqueId()}.wav`;
       const bassObjectKey = `${Utils.getUniqueId()}.wav`;
@@ -140,9 +148,16 @@ const typeDefs = gql`
 `;
 
 const server = new ApolloServer({
-  schema: makeExecutableSchema({ typeDefs, resolvers: resolvers as any }),
+  typeDefs,
+  resolvers: resolvers as any,
+  uploads: false,
 });
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
+const app = express();
+app.use(json({ limit: "10mb" }));
+app.use(graphqlUploadExpress());
+server.applyMiddleware({ app });
+
+app.listen(4000, () => {
+  console.info("server running...");
 });

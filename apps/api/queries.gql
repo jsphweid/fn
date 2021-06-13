@@ -39,3 +39,7 @@ mutation ($file: Upload!) {
     drums
   }
 }
+
+query {
+  helloworld
+}

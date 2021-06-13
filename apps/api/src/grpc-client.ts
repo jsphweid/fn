@@ -2,11 +2,11 @@ import grpc from "grpc";
 
 import services from "./generated/grpc/service_grpc_pb";
 
-const PYTHON_GRPC_SERVICE_ADDRESS =
-  process.env.PYTHON_GRPC_SERVICE_ADDRESS || "localhost:50051";
+const GRPC_HOST = process.env.GRPC_HOST || "localhost";
+const GRPC_PORT = process.env.GRPC_PORT || 50051;
 
 export default new services.FnClient(
-  PYTHON_GRPC_SERVICE_ADDRESS,
+  `${GRPC_HOST}:${GRPC_PORT}`,
   grpc.credentials.createInsecure(),
   {
     "grpc.max_send_message_length": 10000000,
