@@ -1,9 +1,11 @@
 from concurrent import futures
 import grpc
 
-from audio import Audio
+from fn.file.audio import Audio
+from fn.file.image import Image
 from fn.hello_world.adder import adder
 from fn.hello_world.half_plus_two import half_plus_two
+from fn.hello_world.mnist import mnist
 from fn.librosa_fns import librosa_transpose
 from fn.onsets_and_frames.drums import transcribe_drums
 from fn.onsets_and_frames.piano import transcribe_piano
@@ -58,6 +60,9 @@ class Fn(service_pb2_grpc.FnServicer):
             drums=result.drums.to_wav_bytes(),
             other=result.other.to_wav_bytes(),
             vocals=result.vocals.to_wav_bytes())
+
+    def Mnist(self, request, context):
+        return service_pb2.IntResponse(int=mnist(Image.from_bytes(request.image)))
 
 
 def serve():

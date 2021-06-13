@@ -18,6 +18,7 @@ interface IFnService
   wavUNetM6SourceSeparation: IFnService_IWavUNetM6SourceSeparation;
   halfPlusTwo: IFnService_IHalfPlusTwo;
   adder: IFnService_IAdder;
+  mnist: IFnService_IMnist;
 }
 
 interface IFnService_ILibrosaTranspose
@@ -137,6 +138,19 @@ interface IFnService_IAdder
   responseSerialize: grpc.serialize<service_pb.AdderResponse>;
   responseDeserialize: grpc.deserialize<service_pb.AdderResponse>;
 }
+interface IFnService_IMnist
+  extends grpc.MethodDefinition<
+    service_pb.ImageRequest,
+    service_pb.IntResponse
+  > {
+  path: "/Fn/Mnist";
+  requestStream: false;
+  responseStream: false;
+  requestSerialize: grpc.serialize<service_pb.ImageRequest>;
+  requestDeserialize: grpc.deserialize<service_pb.ImageRequest>;
+  responseSerialize: grpc.serialize<service_pb.IntResponse>;
+  responseDeserialize: grpc.deserialize<service_pb.IntResponse>;
+}
 
 export const FnService: IFnService;
 
@@ -177,6 +191,7 @@ export interface IFnServer {
     service_pb.AdderRequest,
     service_pb.AdderResponse
   >;
+  mnist: grpc.handleUnaryCall<service_pb.ImageRequest, service_pb.IntResponse>;
 }
 
 export interface IFnClient {
@@ -394,6 +409,30 @@ export interface IFnClient {
     callback: (
       error: grpc.ServiceError | null,
       response: service_pb.AdderResponse
+    ) => void
+  ): grpc.ClientUnaryCall;
+  mnist(
+    request: service_pb.ImageRequest,
+    callback: (
+      error: grpc.ServiceError | null,
+      response: service_pb.IntResponse
+    ) => void
+  ): grpc.ClientUnaryCall;
+  mnist(
+    request: service_pb.ImageRequest,
+    metadata: grpc.Metadata,
+    callback: (
+      error: grpc.ServiceError | null,
+      response: service_pb.IntResponse
+    ) => void
+  ): grpc.ClientUnaryCall;
+  mnist(
+    request: service_pb.ImageRequest,
+    metadata: grpc.Metadata,
+    options: Partial<grpc.CallOptions>,
+    callback: (
+      error: grpc.ServiceError | null,
+      response: service_pb.IntResponse
     ) => void
   ): grpc.ClientUnaryCall;
 }
@@ -618,6 +657,30 @@ export class FnClient extends grpc.Client implements IFnClient {
     callback: (
       error: grpc.ServiceError | null,
       response: service_pb.AdderResponse
+    ) => void
+  ): grpc.ClientUnaryCall;
+  public mnist(
+    request: service_pb.ImageRequest,
+    callback: (
+      error: grpc.ServiceError | null,
+      response: service_pb.IntResponse
+    ) => void
+  ): grpc.ClientUnaryCall;
+  public mnist(
+    request: service_pb.ImageRequest,
+    metadata: grpc.Metadata,
+    callback: (
+      error: grpc.ServiceError | null,
+      response: service_pb.IntResponse
+    ) => void
+  ): grpc.ClientUnaryCall;
+  public mnist(
+    request: service_pb.ImageRequest,
+    metadata: grpc.Metadata,
+    options: Partial<grpc.CallOptions>,
+    callback: (
+      error: grpc.ServiceError | null,
+      response: service_pb.IntResponse
     ) => void
   ): grpc.ClientUnaryCall;
 }

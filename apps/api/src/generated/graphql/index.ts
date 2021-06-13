@@ -42,6 +42,7 @@ export type Mutation = {
   sourceSeparateUsingWavUNetM5HighSr: StandardVocalSeparationResponse;
   sourceSeparateUsingWavUNetM6: StandardBandSeparationResponse;
   pannAudioTaggingResnet38: Array<StandardAudioTag>;
+  mnist: Scalars["Int"];
   adder: Scalars["Float"];
   halfPlusTwo: Array<Scalars["Float"]>;
 };
@@ -63,6 +64,10 @@ export type MutationSourceSeparateUsingWavUNetM6Args = {
 };
 
 export type MutationPannAudioTaggingResnet38Args = {
+  file: Scalars["Upload"];
+};
+
+export type MutationMnistArgs = {
   file: Scalars["Upload"];
 };
 
@@ -217,6 +222,7 @@ export type DirectiveResolverFn<
 export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars["String"]>;
+  Int: ResolverTypeWrapper<Scalars["Int"]>;
   Float: ResolverTypeWrapper<Scalars["Float"]>;
   Query: ResolverTypeWrapper<{}>;
   StandardAudioTag: ResolverTypeWrapper<StandardAudioTag>;
@@ -230,6 +236,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Mutation: {};
   String: Scalars["String"];
+  Int: Scalars["Int"];
   Float: Scalars["Float"];
   Query: {};
   StandardAudioTag: StandardAudioTag;
@@ -272,6 +279,12 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationPannAudioTaggingResnet38Args, "file">
+  >;
+  mnist?: Resolver<
+    ResolversTypes["Int"],
+    ParentType,
+    ContextType,
+    RequireFields<MutationMnistArgs, "file">
   >;
   adder?: Resolver<
     ResolversTypes["Float"],

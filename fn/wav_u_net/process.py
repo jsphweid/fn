@@ -3,8 +3,8 @@ import numpy as np
 
 from fn.helpers import log_timer
 from fn.wav_u_net import helpers
-from audio import Audio
-from graph_predict import graph_predict, GraphPredictionRequest
+from fn.file.audio import Audio
+from graph_predict.tf_grpc_service import TFGraphPredictionRequest, get_tf_grpc_prediction
 from fn.wav_u_net.model import UnetAudioSeparator
 
 
@@ -59,7 +59,7 @@ def predict_track(mix_audio, mix_sr, sep_input_shape, sep_output_shape, config, 
         mix_part = mix_audio_padded[source_pos:source_pos + input_time_frames, :]
         mix_part = np.expand_dims(mix_part, axis=0)
 
-        source_parts = graph_predict(GraphPredictionRequest(
+        source_parts = get_tf_grpc_prediction(TFGraphPredictionRequest(
             model_name=tf_serving_model_name,
             inputs={"mix_context": mix_part},
             output_keys=config["source_names"]

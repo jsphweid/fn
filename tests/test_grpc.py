@@ -7,13 +7,17 @@ import requests
 import json
 
 # hack because 1. protoc sucks or 2. I don't know how to use protoc
+from fn.file.image import Image
+
 sys.path.insert(0, 'python_grpc_api')
 
-from audio import Audio
-from midi import Midi
+from fn.file.audio import Audio
+from fn.file.midi import Midi
+
 from python_grpc_api import service_pb2_grpc, MAX_BYTES, service_pb2
 from python_grpc_api.service import Fn
-from graph_predict.grpc_service import TF_SERVING_HOST
+from graph_predict.tf_grpc_service import TF_SERVING_HOST
+from graph_predict.ts_grpc_service import TS_SERVING_HOST
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -27,6 +31,17 @@ def tensorflow_serving():
             raise Exception
     except Exception:
         raise Exception("Tensorflow Serving must be running in the background...")
+
+
+@pytest.fixture(scope='session', autouse=True)
+def pytorch_serve():
+    url = f"http://{TS_SERVING_HOST}:8080/ping"
+    try:
+        res = requests.get(url)
+        if not res.status_code == 200:
+            raise Exception
+    except Exception:
+        raise Exception("Pytorch Serve must be running in the background...")
 
 
 @pytest.fixture(scope='session', autouse=True)
@@ -54,6 +69,11 @@ def drums_bytes():
 @pytest.fixture(scope='session')
 def band_bytes():
     return Audio.from_local_file("static/band.wav").to_wav_bytes()
+
+
+@pytest.fixture(scope='session')
+def img_no4_bytes():
+    return Image.from_file("static/4.png").to_png_bytes()
 
 
 def test_adder(grpc_service_stub):
@@ -110,3 +130,8 @@ def test_m6_source_separation(grpc_service_stub, band_bytes):
     assert Audio.from_bytes(result.drums)
     assert Audio.from_bytes(result.other)
     assert Audio.from_bytes(result.vocals)
+
+
+def test_mnist(grpc_service_stub, img_no4_bytes):
+    result = grpc_service_stub.Mnist(service_pb2.ImageRequest(image=img_no4_bytes))
+    assert result.int == 4

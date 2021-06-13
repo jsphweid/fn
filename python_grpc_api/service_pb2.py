@@ -19,10 +19,74 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\rservice.proto\"H\n\x1fStandardVocalSeparationResponse\x12\x0e\n\x06vocals\x18\x01 \x01(\x0c\x12\x15\n\raccompaniment\x18\x02 \x01(\x0c\"\\\n\x1eStandardBandSeparationResponse\x12\x0c\n\x04\x62\x61ss\x18\x01 \x01(\x0c\x12\r\n\x05\x64rums\x18\x02 \x01(\x0c\x12\r\n\x05other\x18\x03 \x01(\x0c\x12\x0e\n\x06vocals\x18\x04 \x01(\x0c\"<\n\x18StandardTransposeRequest\x12\r\n\x05\x61udio\x18\x01 \x01(\x0c\x12\x11\n\tsemitones\x18\x02 \x01(\x02\"\x1d\n\x0c\x41udioRequest\x12\r\n\x05\x61udio\x18\x01 \x01(\x0c\"\x1e\n\rAudioResponse\x12\r\n\x05\x61udio\x18\x01 \x01(\x0c\"\x1c\n\x0cMidiResponse\x12\x0c\n\x04midi\x18\x01 \x01(\x0c\"$\n\x12HalfPlusTwoRequest\x12\x0e\n\x06inputs\x18\x01 \x03(\x02\"&\n\x13HalfPlusTwoResponse\x12\x0f\n\x07outputs\x18\x01 \x03(\x02\"\x1e\n\x0c\x41\x64\x64\x65rRequest\x12\x0e\n\x06inputs\x18\x01 \x03(\x02\"\x1f\n\rAdderResponse\x12\x0e\n\x06output\x18\x01 \x01(\x02\"0\n\x10StandardAudioTag\x12\r\n\x05label\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\x02\"?\n\x1cStandardAudioTaggingResponse\x12\x1f\n\x04tags\x18\x01 \x03(\x0b\x32\x11.StandardAudioTag2\xef\x04\n\x02\x46n\x12?\n\x10LibrosaTranspose\x12\x19.StandardTransposeRequest\x1a\x0e.AudioResponse\"\x00\x12@\n\x1eOnsetsAndFramesPianoTranscribe\x12\r.AudioRequest\x1a\r.MidiResponse\"\x00\x12?\n\x1dOnsetsAndFramesDrumTranscribe\x12\r.AudioRequest\x1a\r.MidiResponse\"\x00\x12J\n\x18PannAudioTaggingResnet38\x12\r.AudioRequest\x1a\x1d.StandardAudioTaggingResponse\"\x00\x12N\n\x19WavUNetM4SourceSeparation\x12\r.AudioRequest\x1a .StandardVocalSeparationResponse\"\x00\x12T\n\x1fWavUNetM5HighSrSourceSeparation\x12\r.AudioRequest\x1a .StandardVocalSeparationResponse\"\x00\x12M\n\x19WavUNetM6SourceSeparation\x12\r.AudioRequest\x1a\x1f.StandardBandSeparationResponse\"\x00\x12:\n\x0bHalfPlusTwo\x12\x13.HalfPlusTwoRequest\x1a\x14.HalfPlusTwoResponse\"\x00\x12(\n\x05\x41\x64\x64\x65r\x12\r.AdderRequest\x1a\x0e.AdderResponse\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\rservice.proto\"\x1d\n\x0cImageRequest\x12\r\n\x05image\x18\x01 \x01(\x0c\"\x1a\n\x0bIntResponse\x12\x0b\n\x03int\x18\x01 \x01(\x05\"H\n\x1fStandardVocalSeparationResponse\x12\x0e\n\x06vocals\x18\x01 \x01(\x0c\x12\x15\n\raccompaniment\x18\x02 \x01(\x0c\"\\\n\x1eStandardBandSeparationResponse\x12\x0c\n\x04\x62\x61ss\x18\x01 \x01(\x0c\x12\r\n\x05\x64rums\x18\x02 \x01(\x0c\x12\r\n\x05other\x18\x03 \x01(\x0c\x12\x0e\n\x06vocals\x18\x04 \x01(\x0c\"<\n\x18StandardTransposeRequest\x12\r\n\x05\x61udio\x18\x01 \x01(\x0c\x12\x11\n\tsemitones\x18\x02 \x01(\x02\"\x1d\n\x0c\x41udioRequest\x12\r\n\x05\x61udio\x18\x01 \x01(\x0c\"\x1e\n\rAudioResponse\x12\r\n\x05\x61udio\x18\x01 \x01(\x0c\"\x1c\n\x0cMidiResponse\x12\x0c\n\x04midi\x18\x01 \x01(\x0c\"$\n\x12HalfPlusTwoRequest\x12\x0e\n\x06inputs\x18\x01 \x03(\x02\"&\n\x13HalfPlusTwoResponse\x12\x0f\n\x07outputs\x18\x01 \x03(\x02\"\x1e\n\x0c\x41\x64\x64\x65rRequest\x12\x0e\n\x06inputs\x18\x01 \x03(\x02\"\x1f\n\rAdderResponse\x12\x0e\n\x06output\x18\x01 \x01(\x02\"0\n\x10StandardAudioTag\x12\r\n\x05label\x18\x01 \x01(\t\x12\r\n\x05score\x18\x02 \x01(\x02\"?\n\x1cStandardAudioTaggingResponse\x12\x1f\n\x04tags\x18\x01 \x03(\x0b\x32\x11.StandardAudioTag2\x97\x05\n\x02\x46n\x12?\n\x10LibrosaTranspose\x12\x19.StandardTransposeRequest\x1a\x0e.AudioResponse\"\x00\x12@\n\x1eOnsetsAndFramesPianoTranscribe\x12\r.AudioRequest\x1a\r.MidiResponse\"\x00\x12?\n\x1dOnsetsAndFramesDrumTranscribe\x12\r.AudioRequest\x1a\r.MidiResponse\"\x00\x12J\n\x18PannAudioTaggingResnet38\x12\r.AudioRequest\x1a\x1d.StandardAudioTaggingResponse\"\x00\x12N\n\x19WavUNetM4SourceSeparation\x12\r.AudioRequest\x1a .StandardVocalSeparationResponse\"\x00\x12T\n\x1fWavUNetM5HighSrSourceSeparation\x12\r.AudioRequest\x1a .StandardVocalSeparationResponse\"\x00\x12M\n\x19WavUNetM6SourceSeparation\x12\r.AudioRequest\x1a\x1f.StandardBandSeparationResponse\"\x00\x12:\n\x0bHalfPlusTwo\x12\x13.HalfPlusTwoRequest\x1a\x14.HalfPlusTwoResponse\"\x00\x12(\n\x05\x41\x64\x64\x65r\x12\r.AdderRequest\x1a\x0e.AdderResponse\"\x00\x12&\n\x05Mnist\x12\r.ImageRequest\x1a\x0c.IntResponse\"\x00\x62\x06proto3'
 )
 
 
+
+
+_IMAGEREQUEST = _descriptor.Descriptor(
+  name='ImageRequest',
+  full_name='ImageRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='image', full_name='ImageRequest.image', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=17,
+  serialized_end=46,
+)
+
+
+_INTRESPONSE = _descriptor.Descriptor(
+  name='IntResponse',
+  full_name='IntResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='int', full_name='IntResponse.int', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=48,
+  serialized_end=74,
+)
 
 
 _STANDARDVOCALSEPARATIONRESPONSE = _descriptor.Descriptor(
@@ -59,8 +123,8 @@ _STANDARDVOCALSEPARATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=17,
-  serialized_end=89,
+  serialized_start=76,
+  serialized_end=148,
 )
 
 
@@ -112,8 +176,8 @@ _STANDARDBANDSEPARATIONRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=91,
-  serialized_end=183,
+  serialized_start=150,
+  serialized_end=242,
 )
 
 
@@ -151,8 +215,8 @@ _STANDARDTRANSPOSEREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=185,
-  serialized_end=245,
+  serialized_start=244,
+  serialized_end=304,
 )
 
 
@@ -183,8 +247,8 @@ _AUDIOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=247,
-  serialized_end=276,
+  serialized_start=306,
+  serialized_end=335,
 )
 
 
@@ -215,8 +279,8 @@ _AUDIORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=278,
-  serialized_end=308,
+  serialized_start=337,
+  serialized_end=367,
 )
 
 
@@ -247,8 +311,8 @@ _MIDIRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=310,
-  serialized_end=338,
+  serialized_start=369,
+  serialized_end=397,
 )
 
 
@@ -279,8 +343,8 @@ _HALFPLUSTWOREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=340,
-  serialized_end=376,
+  serialized_start=399,
+  serialized_end=435,
 )
 
 
@@ -311,8 +375,8 @@ _HALFPLUSTWORESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=378,
-  serialized_end=416,
+  serialized_start=437,
+  serialized_end=475,
 )
 
 
@@ -343,8 +407,8 @@ _ADDERREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=418,
-  serialized_end=448,
+  serialized_start=477,
+  serialized_end=507,
 )
 
 
@@ -375,8 +439,8 @@ _ADDERRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=450,
-  serialized_end=481,
+  serialized_start=509,
+  serialized_end=540,
 )
 
 
@@ -414,8 +478,8 @@ _STANDARDAUDIOTAG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=483,
-  serialized_end=531,
+  serialized_start=542,
+  serialized_end=590,
 )
 
 
@@ -446,11 +510,13 @@ _STANDARDAUDIOTAGGINGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=533,
-  serialized_end=596,
+  serialized_start=592,
+  serialized_end=655,
 )
 
 _STANDARDAUDIOTAGGINGRESPONSE.fields_by_name['tags'].message_type = _STANDARDAUDIOTAG
+DESCRIPTOR.message_types_by_name['ImageRequest'] = _IMAGEREQUEST
+DESCRIPTOR.message_types_by_name['IntResponse'] = _INTRESPONSE
 DESCRIPTOR.message_types_by_name['StandardVocalSeparationResponse'] = _STANDARDVOCALSEPARATIONRESPONSE
 DESCRIPTOR.message_types_by_name['StandardBandSeparationResponse'] = _STANDARDBANDSEPARATIONRESPONSE
 DESCRIPTOR.message_types_by_name['StandardTransposeRequest'] = _STANDARDTRANSPOSEREQUEST
@@ -464,6 +530,20 @@ DESCRIPTOR.message_types_by_name['AdderResponse'] = _ADDERRESPONSE
 DESCRIPTOR.message_types_by_name['StandardAudioTag'] = _STANDARDAUDIOTAG
 DESCRIPTOR.message_types_by_name['StandardAudioTaggingResponse'] = _STANDARDAUDIOTAGGINGRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
+
+ImageRequest = _reflection.GeneratedProtocolMessageType('ImageRequest', (_message.Message,), {
+  'DESCRIPTOR' : _IMAGEREQUEST,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:ImageRequest)
+  })
+_sym_db.RegisterMessage(ImageRequest)
+
+IntResponse = _reflection.GeneratedProtocolMessageType('IntResponse', (_message.Message,), {
+  'DESCRIPTOR' : _INTRESPONSE,
+  '__module__' : 'service_pb2'
+  # @@protoc_insertion_point(class_scope:IntResponse)
+  })
+_sym_db.RegisterMessage(IntResponse)
 
 StandardVocalSeparationResponse = _reflection.GeneratedProtocolMessageType('StandardVocalSeparationResponse', (_message.Message,), {
   'DESCRIPTOR' : _STANDARDVOCALSEPARATIONRESPONSE,
@@ -558,8 +638,8 @@ _FN = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=599,
-  serialized_end=1222,
+  serialized_start=658,
+  serialized_end=1321,
   methods=[
   _descriptor.MethodDescriptor(
     name='LibrosaTranspose',
@@ -648,6 +728,16 @@ _FN = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_ADDERREQUEST,
     output_type=_ADDERRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='Mnist',
+    full_name='Fn.Mnist',
+    index=9,
+    containing_service=None,
+    input_type=_IMAGEREQUEST,
+    output_type=_INTRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

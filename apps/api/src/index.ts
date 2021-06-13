@@ -105,6 +105,11 @@ const resolvers: Resolvers = {
         vocals,
       }));
     },
+    mnist: async (_, { file }) => {
+      const stream = uploadToReadStream(file);
+      const buffer = await readStreamIntoBuffer(stream);
+      return PythonGrpcApi.mnist(buffer);
+    },
   },
 };
 
@@ -142,6 +147,7 @@ const typeDefs = gql`
     ): StandardVocalSeparationResponse!
     sourceSeparateUsingWavUNetM6(file: Upload!): StandardBandSeparationResponse!
     pannAudioTaggingResnet38(file: Upload!): [StandardAudioTag!]!
+    mnist(file: Upload!): Int!
     adder(nums: [Float!]!): Float!
     halfPlusTwo(nums: [Float!]!): [Float!]!
   }

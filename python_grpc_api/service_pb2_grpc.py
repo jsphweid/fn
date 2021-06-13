@@ -59,6 +59,11 @@ class FnStub(object):
                 request_serializer=service__pb2.AdderRequest.SerializeToString,
                 response_deserializer=service__pb2.AdderResponse.FromString,
                 )
+        self.Mnist = channel.unary_unary(
+                '/Fn/Mnist',
+                request_serializer=service__pb2.ImageRequest.SerializeToString,
+                response_deserializer=service__pb2.IntResponse.FromString,
+                )
 
 
 class FnServicer(object):
@@ -120,6 +125,12 @@ class FnServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Mnist(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FnServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -167,6 +178,11 @@ def add_FnServicer_to_server(servicer, server):
                     servicer.Adder,
                     request_deserializer=service__pb2.AdderRequest.FromString,
                     response_serializer=service__pb2.AdderResponse.SerializeToString,
+            ),
+            'Mnist': grpc.unary_unary_rpc_method_handler(
+                    servicer.Mnist,
+                    request_deserializer=service__pb2.ImageRequest.FromString,
+                    response_serializer=service__pb2.IntResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -328,5 +344,22 @@ class Fn(object):
         return grpc.experimental.unary_unary(request, target, '/Fn/Adder',
             service__pb2.AdderRequest.SerializeToString,
             service__pb2.AdderResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Mnist(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/Fn/Mnist',
+            service__pb2.ImageRequest.SerializeToString,
+            service__pb2.IntResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
