@@ -35,7 +35,6 @@ def tensorflow_serving():
 
 @pytest.fixture(scope='session', autouse=True)
 def pytorch_serve():
-    # for now, if tensorflow serving's REST API is running, assume gRPC is open on 8500 port as well...
     url = f"http://{TS_SERVING_HOST}:8080/ping"
     try:
         res = requests.get(url)
