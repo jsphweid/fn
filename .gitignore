@@ -388,4 +388,4 @@ deploy.sh
 
 *.js
 !.eslintrc.js
-
+dist
