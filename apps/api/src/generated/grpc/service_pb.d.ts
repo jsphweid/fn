@@ -6,6 +6,70 @@
 
 import * as jspb from "google-protobuf";
 
+export class ImageRequest extends jspb.Message {
+  getImage(): Uint8Array | string;
+  getImage_asU8(): Uint8Array;
+  getImage_asB64(): string;
+  setImage(value: Uint8Array | string): ImageRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ImageRequest.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: ImageRequest
+  ): ImageRequest.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: ImageRequest,
+    writer: jspb.BinaryWriter
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): ImageRequest;
+  static deserializeBinaryFromReader(
+    message: ImageRequest,
+    reader: jspb.BinaryReader
+  ): ImageRequest;
+}
+
+export namespace ImageRequest {
+  export type AsObject = {
+    image: Uint8Array | string;
+  };
+}
+
+export class IntResponse extends jspb.Message {
+  getInt(): number;
+  setInt(value: number): IntResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IntResponse.AsObject;
+  static toObject(
+    includeInstance: boolean,
+    msg: IntResponse
+  ): IntResponse.AsObject;
+  static extensions: { [key: number]: jspb.ExtensionFieldInfo<jspb.Message> };
+  static extensionsBinary: {
+    [key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>;
+  };
+  static serializeBinaryToWriter(
+    message: IntResponse,
+    writer: jspb.BinaryWriter
+  ): void;
+  static deserializeBinary(bytes: Uint8Array): IntResponse;
+  static deserializeBinaryFromReader(
+    message: IntResponse,
+    reader: jspb.BinaryReader
+  ): IntResponse;
+}
+
+export namespace IntResponse {
+  export type AsObject = {
+    pb_int: number;
+  };
+}
+
 export class StandardVocalSeparationResponse extends jspb.Message {
   getVocals(): Uint8Array | string;
   getVocals_asU8(): Uint8Array;

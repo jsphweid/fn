@@ -5,13 +5,13 @@ from typing import List
 
 import numpy as np
 
-from graph_predict import GraphPredictionRequest, ModelResult, graph_predict
+from graph_predict.tf_grpc_service import TFGraphPredictionRequest, ModelResult, get_tf_grpc_prediction
 from fn.helpers import log_timer
 
 
 @log_timer
-def _preprocess(nums: List[float]) -> GraphPredictionRequest:
-    return GraphPredictionRequest(
+def _preprocess(nums: List[float]) -> TFGraphPredictionRequest:
+    return TFGraphPredictionRequest(
         model_name="half-plus-two-cpu",
         inputs={"x": np.array(nums, dtype=np.float32)},
         output_keys=["y"]
@@ -24,4 +24,4 @@ def _postprocess(model_result: ModelResult) -> List[float]:
 
 
 def half_plus_two(nums: List[float]) -> List[float]:
-    return _postprocess(graph_predict(_preprocess(nums)))
+    return _postprocess(get_tf_grpc_prediction(_preprocess(nums)))

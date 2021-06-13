@@ -13,8 +13,17 @@ service Fn {
     // helloworld
     rpc HalfPlusTwo (HalfPlusTwoRequest) returns (HalfPlusTwoResponse) {}
     rpc Adder (AdderRequest) returns (AdderResponse) {}
+    rpc Mnist (ImageRequest) returns (IntResponse) {}
 }
 
+
+message ImageRequest {
+    bytes image = 1;
+}
+
+message IntResponse {
+    int32 int = 1;
+}
 
 message StandardVocalSeparationResponse {
     bytes vocals = 1;

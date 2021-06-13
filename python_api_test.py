@@ -4,15 +4,6 @@ import tensorflow as tf
 import time
 import calendar
 
-from audio import Audio
-from fn.hello_world.half_plus_two import half_plus_two
-from fn.hello_world.adder import adder
-from fn.onsets_and_frames.drums import transcribe_drums
-from fn.onsets_and_frames.piano import transcribe_piano
-from fn.pann.resnet38 import get_audio_tags
-from fn.piano_transformer import generate_piano
-from fn.wav_u_net import m4, m5_highsr, m6
-
 new_folder_name = f"outputs/{calendar.timegm(time.gmtime())}"
 
 if not os.path.exists(new_folder_name):

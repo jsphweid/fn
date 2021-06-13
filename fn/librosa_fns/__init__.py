@@ -1,7 +1,7 @@
 import librosa
 import numpy as np
 
-from audio import Audio
+from file.audio import Audio
 
 
 def librosa_transpose(audio: Audio, num_steps: float) -> Audio:

@@ -4,11 +4,11 @@ from magenta.models.onsets_frames_transcription.configs import CONFIG_MAP
 from magenta.models.onsets_frames_transcription import infer_util, constants
 from note_seq.protobuf import music_pb2
 
-from audio import Audio
-from graph_predict import GraphPredictionRequest, graph_predict, ModelResult
+from file.audio import Audio
+from graph_predict.tf_grpc_service import TFGraphPredictionRequest, ModelResult, get_tf_grpc_prediction
 from fn.helpers import log_timer
 from fn.onsets_and_frames.helpers import preprocess_audio_for_transcription
-from midi import Midi
+from file.midi import Midi
 
 _hparams = CONFIG_MAP["drums"].hparams
 _hparams.parse("")
@@ -18,7 +18,7 @@ _hparams.use_tpu = False
 
 
 @log_timer
-def _preprocess(audio: Audio) -> GraphPredictionRequest:
+def _preprocess(audio: Audio) -> TFGraphPredictionRequest:
     return preprocess_audio_for_transcription(audio, "onsets-and-frames-drum-transcriber", _hparams)
 
 
@@ -63,4 +63,4 @@ def _postprocess(model_result: ModelResult):
 
 # TODO: simplify this pattern of preprocess, postprocess
 def transcribe_drums(audio: Audio) -> Midi:
-    return _postprocess(graph_predict(_preprocess(audio)))
+    return _postprocess(get_tf_grpc_prediction(_preprocess(audio)))

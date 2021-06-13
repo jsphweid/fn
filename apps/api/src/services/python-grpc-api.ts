@@ -3,6 +3,8 @@ import { promisify } from "util";
 import {
   HalfPlusTwoRequest,
   HalfPlusTwoResponse,
+  ImageRequest,
+  IntResponse,
 } from "../generated/grpc/service_pb";
 import {
   AdderRequest,
@@ -21,6 +23,12 @@ import grpcClient from "../grpc-client";
 const bufferToAudioRequest = (audio: Buffer): AudioRequest => {
   const req = new AudioRequest();
   req.setAudio(audio);
+  return req;
+};
+
+const bufferToImageRequest = (image: Buffer): ImageRequest => {
+  const req = new ImageRequest();
+  req.setImage(image);
   return req;
 };
 
@@ -56,6 +64,10 @@ export namespace PythonGrpcApi {
   ).bind(grpcClient);
 
   const adderFn = promisify<AdderRequest, AdderResponse>(grpcClient.adder).bind(
+    grpcClient
+  );
+
+  const mnistFn = promisify<ImageRequest, IntResponse>(grpcClient.mnist).bind(
     grpcClient
   );
 
@@ -113,4 +125,7 @@ export namespace PythonGrpcApi {
     pannAudioTaggingResnet38Fn(bufferToAudioRequest(audio)).then((res) =>
       res.getTagsList()
     );
+
+  export const mnist = (image: Buffer): Promise<number> =>
+    mnistFn(bufferToImageRequest(image)).then((res) => res.getInt());
 }
