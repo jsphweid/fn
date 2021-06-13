@@ -1,8 +1,8 @@
 from concurrent import futures
 import grpc
 
-from file.audio import Audio
-from file.image import Image
+from fn.file.audio import Audio
+from fn.file.image import Image
 from fn.hello_world.adder import adder
 from fn.hello_world.half_plus_two import half_plus_two
 from fn.hello_world.mnist import mnist

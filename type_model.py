@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from file.audio import Audio
+from fn.file.audio import Audio
 
 
 class TypeModel(BaseModel):

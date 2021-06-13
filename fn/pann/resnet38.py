@@ -3,7 +3,7 @@ from typing import List
 import numpy as np
 from pydantic import BaseModel
 
-from file.audio import Audio
+from fn.file.audio import Audio
 from graph_predict.tf_grpc_service import TFGraphPredictionRequest, get_tf_grpc_prediction
 from fn.helpers import log_timer
 from fn.pann.sorted_labels import pann_sorted_labels

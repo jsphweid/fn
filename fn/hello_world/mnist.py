@@ -1,4 +1,4 @@
-from file.image import Image
+from fn.file.image import Image
 from graph_predict.ts_grpc_service import get_ts_grpc_prediction, TSGraphPredictionRequest
 
 

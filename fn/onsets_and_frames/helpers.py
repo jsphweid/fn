@@ -3,7 +3,7 @@ import tensorflow.compat.v1 as tf
 from magenta.models.onsets_frames_transcription.data import read_examples, preprocess_example, \
     input_tensors_to_model_input, splice_examples, create_batch
 
-from file.audio import Audio
+from fn.file.audio import Audio
 from graph_predict.tf_grpc_service import TFGraphPredictionRequest
 
 

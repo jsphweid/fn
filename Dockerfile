@@ -4,7 +4,6 @@ RUN apt-get update && \
   apt-get install -y liblo-dev librtmidi-dev build-essential python-dev libasound2-dev
 
 WORKDIR /app
-COPY file file
 COPY fn fn
 COPY graph_predict graph_predict
 COPY python_grpc_api python_grpc_api

@@ -4,11 +4,11 @@ from magenta.models.onsets_frames_transcription.configs import CONFIG_MAP
 from magenta.models.onsets_frames_transcription import infer_util, constants
 from note_seq.protobuf import music_pb2
 
-from file.audio import Audio
+from fn.file.audio import Audio
 from graph_predict.tf_grpc_service import TFGraphPredictionRequest, ModelResult, get_tf_grpc_prediction
 from fn.helpers import log_timer
 from fn.onsets_and_frames.helpers import preprocess_audio_for_transcription
-from file.midi import Midi
+from fn.file.midi import Midi
 
 _hparams = CONFIG_MAP["drums"].hparams
 _hparams.parse("")

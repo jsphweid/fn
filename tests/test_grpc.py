@@ -7,12 +7,12 @@ import requests
 import json
 
 # hack because 1. protoc sucks or 2. I don't know how to use protoc
-from file.image import Image
+from fn.file.image import Image
 
 sys.path.insert(0, 'python_grpc_api')
 
-from file.audio import Audio
-from file.midi import Midi
+from fn.file.audio import Audio
+from fn.file.midi import Midi
 
 from python_grpc_api import service_pb2_grpc, MAX_BYTES, service_pb2
 from python_grpc_api.service import Fn

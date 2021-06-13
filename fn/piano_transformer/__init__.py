@@ -2,7 +2,7 @@ import numpy as np
 
 from graph_predict.tf_grpc_service import TFGraphPredictionRequest, get_tf_grpc_prediction
 from fn.helpers import log_timer
-from file.midi import Midi
+from fn.file.midi import Midi
 
 
 @log_timer

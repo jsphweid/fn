@@ -3,7 +3,7 @@ import numpy as np
 
 from fn.helpers import log_timer
 from fn.wav_u_net import helpers
-from file.audio import Audio
+from fn.file.audio import Audio
 from graph_predict.tf_grpc_service import TFGraphPredictionRequest, get_tf_grpc_prediction
 from fn.wav_u_net.model import UnetAudioSeparator
 
