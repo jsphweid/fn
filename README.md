@@ -9,8 +9,6 @@ pip install -r dev-requirements
 
 TODO: write a real README.md
 
-### This is sus... not really sure what it's suppose to be
-
 tsconfig.json
 
 ```
